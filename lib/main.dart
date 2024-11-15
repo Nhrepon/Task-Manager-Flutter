@@ -14,7 +14,7 @@ class Blood extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Need Blood",
-      home: Home();
+      home: Home()
 
     );
   }
@@ -28,18 +28,30 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Need Blood"),
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 18),
         backgroundColor: Colors.deepOrange,
         centerTitle: true,
         actions: [
-          Icon(Icons.add)
+          IconButton(onPressed: (){}, icon: Icon(Icons.add))
         ],
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/blood.svg')
+            CircleAvatar(
+              backgroundColor: Colors.red,
+              child: Image.asset('images/blood.png'),
+              radius: 100,
+
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Text("Donate Blood", style: TextStyle(fontSize: 16),),
+            ),
           ],
         ),
+
       ),
     );
   }
