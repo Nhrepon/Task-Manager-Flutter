@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screen/forget_password_screen.dart';
+import 'package:task_manager/ui/screen/home_screen.dart';
 import 'package:task_manager/ui/screen/signup_screen.dart';
 import 'package:task_manager/ui/utility/colors.dart';
 import 'package:task_manager/ui/widgets/background.dart';
@@ -48,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20,),
                 ElevatedButton(
-                  onPressed: (){},
+                  onPressed: (){Navigator.pushNamedAndRemoveUntil(context, HomeScreen.name, (value)=>false);},
                   child: const Icon(Icons.arrow_circle_right_outlined),
                 ),
                 const SizedBox(height: 48,),
@@ -56,7 +58,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                   child: Column(
                     children: [
-                      TextButton(onPressed: (){}, child: const Text("Forget password?")),
+                      TextButton(onPressed: (){Navigator.pushNamed(context, ForgetPassword.name);},
+                          child: const Text("Forget password?"),
+                      ),
                       _buildSignupSection(),
                     ],
                   ),

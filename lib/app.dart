@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screen/add_new_task_screen.dart';
+import 'package:task_manager/ui/screen/forget_password_screen.dart';
+import 'package:task_manager/ui/screen/home_screen.dart';
 import 'package:task_manager/ui/screen/login_screen.dart';
+import 'package:task_manager/ui/screen/reset_password_screen.dart';
 import 'package:task_manager/ui/screen/signup_screen.dart';
 import 'package:task_manager/ui/screen/splash_screen.dart';
+import 'package:task_manager/ui/screen/verify_otp_screen.dart';
 import 'package:task_manager/ui/utility/colors.dart';
 
 class TaskManager extends StatelessWidget {
@@ -17,6 +22,10 @@ class TaskManager extends StatelessWidget {
           titleLarge: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
+          ),
+          titleSmall: TextStyle(
+            color: Colors.grey,
+            fontWeight: FontWeight.w600
           )
         ),
         inputDecorationTheme: const InputDecorationTheme(
@@ -61,6 +70,16 @@ class TaskManager extends StatelessWidget {
           widget = const LoginScreen();
         }else if(settings.name == SignupScreen.name){
           widget = const SignupScreen();
+        }else if(settings.name == ForgetPassword.name){
+          widget = const ForgetPassword();
+        }else if(settings.name == VerifyOtp.name){
+          widget = const VerifyOtp();
+        }else if(settings.name == ResetPasswordScreen.name){
+          widget = const ResetPasswordScreen();
+        }else if(settings.name == HomeScreen.name){
+          widget = const HomeScreen();
+        }else if(settings.name == AddNewTaskScreen.name){
+          widget = const AddNewTaskScreen();
         }
         return MaterialPageRoute(builder: (_)=>widget);
       },
