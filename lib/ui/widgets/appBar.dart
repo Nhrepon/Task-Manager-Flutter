@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screen/login_screen.dart';
+import 'package:task_manager/ui/screen/profile_update_screen.dart';
 
 import '../utility/colors.dart';
 
 class app_bar extends StatelessWidget implements PreferredSizeWidget {
   app_bar({
-    super.key,
+    super.key, this.updateProfile = false,
   });
+
+  final bool updateProfile;
 
 
   @override
@@ -15,26 +19,31 @@ class app_bar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: appColors.themeColor,
       title: Row(
         children: [
-          CircleAvatar(),
-          const SizedBox(
-            width: 16,
-          ),
+          const CircleAvatar(),
+          const SizedBox(width: 16,),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Nur Hossain",
-                  style: textTheme.titleLarge?.copyWith(color: Colors.white),
-                ),
-                Text(
-                  "nurhossainrepon7248@gmail.com",
-                  style: textTheme.titleSmall?.copyWith(color: Colors.white),
-                ),
-              ],
+            child: GestureDetector(
+              onTap: (){
+                if(!updateProfile){
+                  Navigator.pushNamed(context, ProfileUpdateScreen.name);
+                }
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Nur Hossain",
+                    style: textTheme.titleLarge?.copyWith(color: Colors.white),
+                  ),
+                  Text(
+                    "nurhossainrepon7248@gmail.com",
+                    style: textTheme.titleSmall?.copyWith(color: Colors.white),
+                  ),
+                ],
+              ),
             ),
           ),
-          IconButton(onPressed: (){}, icon: Icon(Icons.logout)),
+          IconButton(onPressed: (){Navigator.pushNamed(context, LoginScreen.name);}, icon: const Icon(Icons.logout)),
         ],
       ),
     );

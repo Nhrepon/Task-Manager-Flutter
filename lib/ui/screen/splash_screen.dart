@@ -9,10 +9,10 @@ class SplashScreen extends StatefulWidget {
 
   static const String name  = '/';
   @override
-  State<SplashScreen> createState()=> _splashScreen();
+  State<SplashScreen> createState()=> _SplashScreen();
 }
 
-class _splashScreen extends State<SplashScreen>{
+class _SplashScreen extends State<SplashScreen>{
   @override
   void initState(){
     super.initState();

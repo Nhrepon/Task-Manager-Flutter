@@ -3,6 +3,7 @@ import 'package:task_manager/ui/screen/add_new_task_screen.dart';
 import 'package:task_manager/ui/screen/forget_password_screen.dart';
 import 'package:task_manager/ui/screen/home_screen.dart';
 import 'package:task_manager/ui/screen/login_screen.dart';
+import 'package:task_manager/ui/screen/profile_update_screen.dart';
 import 'package:task_manager/ui/screen/reset_password_screen.dart';
 import 'package:task_manager/ui/screen/signup_screen.dart';
 import 'package:task_manager/ui/screen/splash_screen.dart';
@@ -80,6 +81,8 @@ class TaskManager extends StatelessWidget {
           widget = const HomeScreen();
         }else if(settings.name == AddNewTaskScreen.name){
           widget = const AddNewTaskScreen();
+        }else if(settings.name == ProfileUpdateScreen.name){
+          widget = const ProfileUpdateScreen();
         }
         return MaterialPageRoute(builder: (_)=>widget);
       },

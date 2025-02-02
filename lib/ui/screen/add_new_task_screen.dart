@@ -32,13 +32,13 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                 const SizedBox(height: 16,),
                 TextFormField(
                   controller: _titleTeController,
-                  decoration: InputDecoration(hintText: "Title"),
+                  decoration: const InputDecoration(hintText: "Title"),
                 ),
                 const SizedBox(height: 16,),
                 TextFormField(
                   controller: _descriptionTeController,
                   maxLines: 8,
-                  decoration: InputDecoration(hintText: "Description"),
+                  decoration: const InputDecoration(hintText: "Description"),
                 ),
                 const SizedBox(height: 16,),
                 ElevatedButton(onPressed: (){}, child: const Icon(Icons.arrow_circle_right_outlined))
