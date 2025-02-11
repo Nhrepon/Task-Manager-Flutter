@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/model/user_model.dart';
 import 'package:task_manager/data/services/apiList.dart';
+import 'package:task_manager/ui/controller/auth_controller.dart';
 import 'package:task_manager/ui/screen/forget_password_screen.dart';
 import 'package:task_manager/ui/screen/home_screen.dart';
 import 'package:task_manager/ui/screen/signup_screen.dart';
@@ -121,6 +123,9 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {});
 
     if(response.isSuccess){
+      String token = response.responseData!["token"];
+      UserModel userModel = UserModel.fromJson(response.responseData!["data"]);
+      await AuthController.saveUserData(token, userModel);
       _emailTEController.clear();
       _passwordTEController.clear();
       ShowSnackBarMessage(context, response.message);

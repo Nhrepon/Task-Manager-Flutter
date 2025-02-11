@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screen/login_screen.dart';
 import 'package:task_manager/ui/screen/profile_update_screen.dart';
 
+import '../controller/auth_controller.dart';
 import '../utility/colors.dart';
 
 class app_bar extends StatelessWidget implements PreferredSizeWidget {
@@ -32,7 +33,7 @@ class app_bar extends StatelessWidget implements PreferredSizeWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Nur Hossain",
+                    AuthController.userModel?.fullName ?? "",
                     style: textTheme.titleLarge?.copyWith(color: Colors.white),
                   ),
                   Text(
