@@ -20,4 +20,9 @@ flutter create .
 
 **flutter pub upgrade**
 flutter pub outdated
+
+
+flutter config --jdk-dir "C:\Program Files\Java\jdk-17"
+
+
 ```

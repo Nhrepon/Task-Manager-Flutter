@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:task_manager/data/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:task_manager/data/model/user_model.dart';
+
 
 class AuthController{
   static String? accessToken;

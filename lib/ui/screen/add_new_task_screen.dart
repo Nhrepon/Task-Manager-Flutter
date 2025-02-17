@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/widgets/appBar.dart';
+import 'package:task_manager/ui/widgets/appNavigationBar.dart';
 import 'package:task_manager/ui/widgets/background.dart';
 
 class AddNewTaskScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: app_bar(),
+      appBar: const AppNavigationBar(),
       body: background(child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

@@ -5,8 +5,8 @@ import 'package:task_manager/ui/screen/profile_update_screen.dart';
 import '../controller/auth_controller.dart';
 import '../utility/colors.dart';
 
-class app_bar extends StatelessWidget implements PreferredSizeWidget {
-  app_bar({
+class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
+  const AppNavigationBar({
     super.key, this.updateProfile = false,
   });
 
@@ -37,7 +37,7 @@ class app_bar extends StatelessWidget implements PreferredSizeWidget {
                     style: textTheme.titleLarge?.copyWith(color: Colors.white),
                   ),
                   Text(
-                    "nurhossainrepon7248@gmail.com",
+                    AuthController.userModel?.email ?? "",
                     style: textTheme.titleSmall?.copyWith(color: Colors.white),
                   ),
                 ],

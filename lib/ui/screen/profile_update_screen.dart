@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/widgets/appBar.dart';
+import 'package:task_manager/ui/widgets/appNavigationBar.dart';
 import 'package:task_manager/ui/widgets/background.dart';
 
 class ProfileUpdateScreen extends StatefulWidget {
@@ -25,7 +25,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: app_bar(
+      appBar: AppNavigationBar(
         updateProfile: true,
       ),
       body: background(child: SingleChildScrollView(

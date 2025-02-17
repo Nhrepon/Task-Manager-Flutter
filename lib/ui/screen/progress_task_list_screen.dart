@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/TaskItem.dart';
-import '../widgets/appBar.dart';
+import '../widgets/appNavigationBar.dart';
 import '../widgets/background.dart';
 
 class ProgressTaskListScreen extends StatefulWidget {
@@ -14,7 +14,7 @@ class _ProgressTaskListScreenState extends State<ProgressTaskListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: app_bar(),
+      appBar: AppNavigationBar(),
       body: background(
         child: _buildTaskListView(),
       ),

@@ -2,6 +2,7 @@ ios/
 linux/
 macos/
 windows/
+android/
 # Miscellaneous
 *.class
 *.log

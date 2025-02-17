@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/widgets/background.dart';
 import '../widgets/TaskItem.dart';
-import '../widgets/appBar.dart';
+import '../widgets/appNavigationBar.dart';
 import '../widgets/taskStatusCard.dart';
 
 class NewTaskScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: app_bar(),
+      appBar: AppNavigationBar(),
       body: background(
         child: SingleChildScrollView(
           child: Column(
