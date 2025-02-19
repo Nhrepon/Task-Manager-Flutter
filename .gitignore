@@ -3,6 +3,7 @@ linux/
 macos/
 windows/
 android/
+web/
 # Miscellaneous
 *.class
 *.log
