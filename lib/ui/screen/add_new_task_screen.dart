@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/services/apiCaller.dart';
+import 'package:task_manager/data/services/apiList.dart';
+import 'package:task_manager/ui/widgets/ProgressInButton.dart';
+import 'package:task_manager/ui/widgets/SnackBarMessage.dart';
 import 'package:task_manager/ui/widgets/appNavigationBar.dart';
 import 'package:task_manager/ui/widgets/background.dart';
 
@@ -14,6 +18,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
   final TextEditingController _titleTeController = TextEditingController();
   final TextEditingController _descriptionTeController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool progress = true;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -33,15 +38,34 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                 TextFormField(
                   controller: _titleTeController,
                   decoration: const InputDecoration(hintText: "Title"),
+                  validator: (String? value){
+                    if(value?.trim().isEmpty ?? true){
+                      return "Enter task title here ...";
+                    }return null;
+                  },
                 ),
                 const SizedBox(height: 16,),
                 TextFormField(
                   controller: _descriptionTeController,
                   maxLines: 8,
                   decoration: const InputDecoration(hintText: "Description"),
+                  validator: (String? value){
+                    if(value?.trim().isEmpty ?? true){
+                      return "Enter task description here ...";
+                    }return null;
+                  },
                 ),
                 const SizedBox(height: 16,),
-                ElevatedButton(onPressed: (){}, child: const Icon(Icons.arrow_circle_right_outlined))
+                Visibility(
+                  visible: progress,
+                  replacement: const ProgressInButton(),
+                  child: ElevatedButton(onPressed: (){
+                    if(_formKey.currentState!.validate()){
+                      createNewTask();
+                    }
+                  },
+                      child: const Icon(Icons.arrow_circle_right_outlined)),
+                )
                     
               ],
             ),
@@ -50,6 +74,26 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
       )),
     );
   }
+
+  Future<void> createNewTask()async{
+    progress = false;
+    setState(() {});
+    Map<String, dynamic> reqBody = {
+      "title":_titleTeController.text.trim(),
+      "description":_descriptionTeController.text.trim(),
+      "status": "new"
+    };
+    final NetworkResponse response = await ApiCaller.postRequest(url: ApiList.createTask, body: reqBody);
+    if(response.isSuccess){
+      ShowSnackBarMessage(context, response.message);
+    }else{
+      ShowSnackBarMessage(context, response.message);
+    }
+    progress = true;
+    setState(() {});
+  }
+
+
   @override
   void dispose() {
     // TODO: implement dispose

@@ -44,7 +44,10 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
-          IconButton(onPressed: (){Navigator.pushNamed(context, LoginScreen.name);}, icon: const Icon(Icons.logout)),
+          IconButton(onPressed: ()async{
+            await AuthController.clearData();
+            Navigator.pushNamedAndRemoveUntil(context, LoginScreen.name, (predict)=>false);},
+              icon: const Icon(Icons.logout)),
         ],
       ),
     );

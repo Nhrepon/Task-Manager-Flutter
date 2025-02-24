@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/model/task_model.dart';
 
 import '../utility/colors.dart';
 
 class TaskItem extends StatelessWidget {
   const TaskItem({
-    super.key,
+    super.key, required this.taskModel,
   });
 
+  final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -14,12 +16,12 @@ class TaskItem extends StatelessWidget {
       elevation: 0,
       child: ListTile(
         tileColor: Colors.white,
-        title: Text("Title will be here..."),
+        title: Text(taskModel.title ?? ''),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Description will be here ... "),
-            Text("30 January 2024"),
+            Text(taskModel.description ?? ''),
+            Text(taskModel.createdDate ?? ''),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/screen/new_task_screen.dart';
+import 'package:task_manager/ui/screen/cancel_task_list_screen.dart';
+import 'package:task_manager/ui/screen/completed_task_list_screen.dart';
+import 'package:task_manager/ui/screen/new_task_list_screen.dart';
 import 'package:task_manager/ui/screen/progress_task_list_screen.dart';
 
 import 'add_new_task_screen.dart';
@@ -17,8 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = const [
     NewTaskScreen(),
     ProgressTaskListScreen(),
-    NewTaskScreen(),
-    NewTaskScreen(),
+    CompletedTaskListScreen(),
+    CancelTaskListScreen(),
   ];
   @override
   Widget build(BuildContext context) {

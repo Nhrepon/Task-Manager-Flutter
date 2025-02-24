@@ -128,8 +128,10 @@ class _LoginScreenState extends State<LoginScreen> {
       await AuthController.saveUserData(token, userModel);
       _emailTEController.clear();
       _passwordTEController.clear();
-      ShowSnackBarMessage(context, response.message);
+      ShowSnackBarMessage(context, response.responseData!["status"]);
+      await Future.delayed(const Duration(seconds: 2));
       Navigator.pushReplacementNamed(context, HomeScreen.name);
+      setState(() {});
     }else{
       ShowSnackBarMessage(context, response.message);
     }

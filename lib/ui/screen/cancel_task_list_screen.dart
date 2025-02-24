@@ -8,14 +8,14 @@ import '../widgets/TaskItem.dart';
 import '../widgets/appNavigationBar.dart';
 import '../widgets/background.dart';
 
-class ProgressTaskListScreen extends StatefulWidget {
-  const ProgressTaskListScreen({super.key});
+class CancelTaskListScreen extends StatefulWidget {
+  const CancelTaskListScreen({super.key});
 
   @override
-  State<ProgressTaskListScreen> createState() => _ProgressTaskListScreenState();
+  State<CancelTaskListScreen> createState() => _ProgressTaskListScreenState();
 }
 
-class _ProgressTaskListScreenState extends State<ProgressTaskListScreen> {
+class _ProgressTaskListScreenState extends State<CancelTaskListScreen> {
   TaskListByStatusModel? taskListByStatusModel;
   bool progress = true;
 
@@ -61,7 +61,7 @@ class _ProgressTaskListScreenState extends State<ProgressTaskListScreen> {
   Future<void> getNewTaskList()async{
     progress = false;
     setState(() {});
-    NetworkResponse response = await ApiCaller.getRequest(url: ApiList.taskListByStatus("Progress"));
+    NetworkResponse response = await ApiCaller.getRequest(url: ApiList.taskListByStatus("Canceled"));
     if(response.isSuccess){
       taskListByStatusModel = TaskListByStatusModel.fromJson(response.responseData!);
     }else{
