@@ -53,7 +53,10 @@ class _ProgressTaskListScreenState extends State<ProgressTaskListScreen> {
         primary: false,
         itemCount: taskListByStatusModel?.taskList?.length ?? 0,
         itemBuilder: (context, index){
-          return TaskItem(taskModel: taskListByStatusModel!.taskList![index],);
+          return TaskItem(
+
+            taskModel: taskListByStatusModel!.taskList![index],
+          );
         }
     );
   }

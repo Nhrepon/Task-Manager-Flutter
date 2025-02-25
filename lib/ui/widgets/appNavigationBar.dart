@@ -1,7 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screen/login_screen.dart';
 import 'package:task_manager/ui/screen/profile_update_screen.dart';
-
 import '../controller/auth_controller.dart';
 import '../utility/colors.dart';
 
@@ -20,7 +20,11 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: appColors.themeColor,
       title: Row(
         children: [
-          const CircleAvatar(),
+          CircleAvatar(
+            radius: 16,
+            backgroundImage: MemoryImage(base64Decode(AuthController.userModel?.photo ?? "")),
+            onBackgroundImageError: (_, __) => const Icon(Icons.person),
+          ),
           const SizedBox(width: 16,),
           Expanded(
             child: GestureDetector(

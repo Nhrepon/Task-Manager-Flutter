@@ -35,7 +35,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppNavigationBar(),
+      appBar: const AppNavigationBar(),
       body: background(
         child: SingleChildScrollView(
           child: Column(
@@ -59,7 +59,9 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
               primary: false,
               itemCount: taskListByStatusModel?.taskList?.length ?? 0,
                 itemBuilder: (context, index){
-                return TaskItem(taskModel: taskListByStatusModel!.taskList![index],);
+                return TaskItem(
+                  taskModel: taskListByStatusModel!.taskList![index],
+                );
                 }
             );
   }
@@ -69,7 +71,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       visible: progress,
       replacement: const ProgressInButton(),
       child:  Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: SizedBox(
           height: 100,
           child: ListView.builder(
