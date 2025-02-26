@@ -22,7 +22,14 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           CircleAvatar(
             radius: 16,
-            backgroundImage: MemoryImage(base64Decode(AuthController.userModel?.photo ?? "")),
+            backgroundImage: AuthController.userModel?.photo != null &&
+                AuthController.userModel!.photo!.contains(',')
+                ? MemoryImage(
+              base64Decode(AuthController.userModel!.photo!.split(',').last),
+            )
+                : MemoryImage(
+              base64Decode(AuthController.userModel!.photo!),
+            ),
             onBackgroundImageError: (_, __) => const Icon(Icons.person),
           ),
           const SizedBox(width: 16,),

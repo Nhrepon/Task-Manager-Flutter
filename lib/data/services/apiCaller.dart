@@ -31,7 +31,7 @@ static Future<NetworkResponse> getRequest({required String url, Map<String, dyna
       logout();
       return NetworkResponse(
           isSuccess: false,
-          message: "User registration failed!",
+          message: "${response.body} ${response.statusCode}",
           responseData: jsonDecode(response.body)
       );
     }else{

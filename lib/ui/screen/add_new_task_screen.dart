@@ -81,7 +81,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
     Map<String, dynamic> reqBody = {
       "title":_titleTeController.text.trim(),
       "description":_descriptionTeController.text.trim(),
-      "status": "new"
+      "status": "New"
     };
     final NetworkResponse response = await ApiCaller.postRequest(url: ApiList.createTask, body: reqBody);
     if(response.isSuccess){
