@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:task_manager/ui/controller/auth_controller.dart';
 import 'package:task_manager/ui/screen/login_screen.dart';
-
 import '../../app.dart';
 
 class NetworkResponse{
@@ -20,7 +19,7 @@ class ApiCaller{
 static Future<NetworkResponse> getRequest({required String url, Map<String, dynamic>? params})async{
   try{
     Response response = await get(Uri.parse(url), headers: {'token':AuthController.accessToken ?? ''});
-    debugPrint("Response data: ${response.body}");
+    debugPrint("Response data: ${response.body} ${AuthController.accessToken}");
     if(response.statusCode == 200){
       return NetworkResponse(
         isSuccess: true,
@@ -28,10 +27,10 @@ static Future<NetworkResponse> getRequest({required String url, Map<String, dyna
           responseData: jsonDecode(response.body)
       );
     }else if(response.statusCode == 401){
-      logout();
+      //logout();
       return NetworkResponse(
           isSuccess: false,
-          message: "${response.body} ${response.statusCode}",
+          message: "${response.body} ${response.statusCode} ${AuthController.accessToken}",
           responseData: jsonDecode(response.body)
       );
     }else{

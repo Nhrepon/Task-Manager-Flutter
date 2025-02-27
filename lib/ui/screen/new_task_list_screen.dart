@@ -13,6 +13,7 @@ import '../widgets/taskStatusCard.dart';
 
 class NewTaskScreen extends StatefulWidget {
   const NewTaskScreen({super.key});
+  static const String name = 'new-task-list';
 
   @override
   State<NewTaskScreen> createState() => _NewTaskScreenState();
@@ -106,7 +107,10 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   Future<void> getNewTaskList()async{
     progress = false;
     setState(() {});
+
     NetworkResponse response = await ApiCaller.getRequest(url: ApiList.taskListByStatus("New"));
+    print("new task list: ${response.responseData!}");
+
     if(response.isSuccess){
       taskListByStatusModel = TaskListByStatusModel.fromJson(response.responseData!);
     }else{

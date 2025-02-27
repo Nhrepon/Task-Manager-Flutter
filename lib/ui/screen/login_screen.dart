@@ -9,7 +9,7 @@ import 'package:task_manager/ui/screen/signup_screen.dart';
 import 'package:task_manager/ui/utility/colors.dart';
 import 'package:task_manager/ui/widgets/ProgressInButton.dart';
 import 'package:task_manager/ui/widgets/background.dart';
-
+import 'package:get/get.dart';
 import '../../data/services/apiCaller.dart';
 import '../widgets/SnackBarMessage.dart';
 
@@ -119,8 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final NetworkResponse response = await ApiCaller.postRequest(url: ApiList.login, body: reqBody);
 
-    _progress = true;
-    setState(() {});
+    
 
     if(response.isSuccess){
       String token = response.responseData!["token"];
@@ -128,12 +127,15 @@ class _LoginScreenState extends State<LoginScreen> {
       await AuthController.saveUserData(token, userModel);
       _emailTEController.clear();
       _passwordTEController.clear();
-      ShowSnackBarMessage(context, response.responseData!["status"]);
-      await Future.delayed(const Duration(seconds: 2));
-      Navigator.pushReplacementNamed(context, HomeScreen.name);
+      ShowSnackBarMessage(context, response.responseData!["token"]);
+      await Future.delayed(const Duration(seconds: 1));
+      Get.offAllNamed(HomeScreen.name);
+      _progress = true;
       setState(() {});
     }else{
       ShowSnackBarMessage(context, response.message);
+      _progress = true;
+      setState(() {});
     }
 
   }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/data/services/apiCaller.dart';
 import 'package:task_manager/data/services/apiList.dart';
+import 'package:task_manager/ui/screen/new_task_list_screen.dart';
 import 'package:task_manager/ui/widgets/ProgressInButton.dart';
 import 'package:task_manager/ui/widgets/SnackBarMessage.dart';
 import 'package:task_manager/ui/widgets/appNavigationBar.dart';
 import 'package:task_manager/ui/widgets/background.dart';
+import 'package:get/get.dart';
+import 'package:task_manager/ui/controller/task_controller.dart';
 
 class AddNewTaskScreen extends StatefulWidget {
   const AddNewTaskScreen({super.key});
@@ -19,6 +22,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
   final TextEditingController _descriptionTeController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool progress = true;
+  final TaskController taskController = Get.find<TaskController>();
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -59,9 +63,19 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                 Visibility(
                   visible: progress,
                   replacement: const ProgressInButton(),
-                  child: ElevatedButton(onPressed: (){
+                  child: ElevatedButton(onPressed: ()async{
                     if(_formKey.currentState!.validate()){
-                      createNewTask();
+                      progress = false;
+                      setState(() {});
+                      bool isSuccess = await taskController.createNewTask(_titleTeController.text.trim(), _descriptionTeController.text.trim());
+                      if(isSuccess){
+                        ShowSnackBarMessage(context, "success");
+                        Get.back();
+                      }else{
+                        ShowSnackBarMessage(context, "failed");
+                      }
+                      progress = true;
+                      setState(() {});
                     }
                   },
                       child: const Icon(Icons.arrow_circle_right_outlined)),
@@ -75,23 +89,23 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
     );
   }
 
-  Future<void> createNewTask()async{
-    progress = false;
-    setState(() {});
-    Map<String, dynamic> reqBody = {
-      "title":_titleTeController.text.trim(),
-      "description":_descriptionTeController.text.trim(),
-      "status": "New"
-    };
-    final NetworkResponse response = await ApiCaller.postRequest(url: ApiList.createTask, body: reqBody);
-    if(response.isSuccess){
-      ShowSnackBarMessage(context, response.message);
-    }else{
-      ShowSnackBarMessage(context, response.message);
-    }
-    progress = true;
-    setState(() {});
-  }
+  // Future<void> createNewTask()async{
+  //   progress = false;
+  //   setState(() {});
+  //   Map<String, dynamic> reqBody = {
+  //     "title":_titleTeController.text.trim(),
+  //     "description":_descriptionTeController.text.trim(),
+  //     "status": "New"
+  //   };
+  //   final NetworkResponse response = await ApiCaller.postRequest(url: ApiList.createTask, body: reqBody);
+  //   if(response.isSuccess){
+  //     ShowSnackBarMessage(context, response.message);
+  //   }else{
+  //     ShowSnackBarMessage(context, response.message);
+  //   }
+  //   progress = true;
+  //   setState(() {});
+  // }
 
 
   @override

@@ -3,12 +3,15 @@ import 'package:task_manager/ui/screen/add_new_task_screen.dart';
 import 'package:task_manager/ui/screen/forget_password_screen.dart';
 import 'package:task_manager/ui/screen/home_screen.dart';
 import 'package:task_manager/ui/screen/login_screen.dart';
+import 'package:task_manager/ui/screen/new_task_list_screen.dart';
 import 'package:task_manager/ui/screen/profile_update_screen.dart';
 import 'package:task_manager/ui/screen/reset_password_screen.dart';
 import 'package:task_manager/ui/screen/signup_screen.dart';
 import 'package:task_manager/ui/screen/splash_screen.dart';
 import 'package:task_manager/ui/screen/verify_otp_screen.dart';
 import 'package:task_manager/ui/utility/colors.dart';
+import 'package:get/get.dart';
+import 'controller_binder.dart';
 
 class TaskManager extends StatelessWidget {
   const TaskManager({super.key});
@@ -17,10 +20,11 @@ class TaskManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       navigatorKey: navigatorKey,
+      initialBinding: ControllerBinder(),
       theme: ThemeData(
         colorSchemeSeed: appColors.themeColor,
         textTheme: const TextTheme(
@@ -57,8 +61,8 @@ class TaskManager extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)
               ),
-              fixedSize: Size.fromWidth(double.maxFinite),
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              fixedSize: const Size.fromWidth(double.maxFinite),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               foregroundColor: Colors.white,
               textStyle: const TextStyle(
                   fontSize: 16

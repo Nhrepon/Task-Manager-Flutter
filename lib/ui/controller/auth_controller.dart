@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_manager/data/model/user_model.dart';
 
@@ -20,7 +19,7 @@ class AuthController{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? token = sharedPreferences.getString("token");
     if(token != null){
-      getUserData();
+      await getUserData();
       return true;
     }else{
       return false;
